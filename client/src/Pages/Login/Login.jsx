@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRef } from 'react'
-import axiosBase from '../axiosConfig'
+import axiosBase from '../../axiosConfig'
 import { useNavigate } from 'react-router-dom'
 
 function Login() {
