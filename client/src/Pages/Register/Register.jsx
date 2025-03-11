@@ -1,78 +1,104 @@
-import React from 'react'
-import { useRef } from 'react'
-import axiosBase from '../../axiosConfig'
-import { useNavigate } from 'react-router-dom'
+import React, { useRef } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axiosBase from '../../axiosConfig';
+import classes from "./Register.module.css";
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import About from "../../components/About/About";
 
 function Register() {
-  const usernameDom = useRef()
-  const firstNameDom = useRef()
-  const lastNameDom = useRef()
-  const emailDom = useRef()
-  const passwordDom = useRef()
-  const navigate = useNavigate()
+  const usernameDom = useRef();
+  const firstNameDom = useRef();
+  const lastNameDom = useRef();
+  const emailDom = useRef();
+  const passwordDom = useRef();
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
-    e.preventDefault()
-    const usernameValue= usernameDom.current.value
-    const firstNameValue = firstNameDom.current.value
-    const lastNameValue = lastNameDom.current.value
-    const emailValue = emailDom.current.value
-    const passwordValue = passwordDom.current.value
+    e.preventDefault();
+    const usernameValue = usernameDom.current.value;
+    const firstNameValue = firstNameDom.current.value;
+    const lastNameValue = lastNameDom.current.value;
+    const emailValue = emailDom.current.value;
+    const passwordValue = passwordDom.current.value;
 
     if (!usernameValue || !firstNameValue || !lastNameValue || !emailValue || !passwordValue) {
-      alert('Please fill all the fields')
-      return
+      alert('Please fill all the fields');
+      return;
     }
+
     try {
       await axiosBase.post('users/register', {
         username: usernameValue,
         firstname: firstNameValue,
         lastname: lastNameValue,
-        email: emailValue,  
-        password: passwordValue
-      
-      })
-      alert('User registered successfully')
-      navigate('/login')
+        email: emailValue,
+        password: passwordValue,
+      });
+      alert('User registered successfully');
+      navigate('/');
     } catch (error) {
-      alert('Something went wrong')
-      console.log(error)
+      alert('Something went wrong');
+      console.log(error);
     }
   }
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-      <div>
-        <span>Username : ---</span>
-        <input ref={usernameDom} type="text" placeholder="Enter Username" />
+    <div className={classes.pageWrapper}>
+      <Header /> 
+      <div className={classes.container}>
+        <div className={classes.contentWrapper}>
+          <div>
+          <form onSubmit={handleSubmit} className={classes.register_form}>
+            <div className={classes.title}>
+              <h2>Join the Network</h2>
+              <p className={classes.login}>
+                Already have an account? <Link to={'/login'}>Login</Link>
+              </p>
+            </div>
+
+            <div className={classes.input_field}>
+              <input ref={usernameDom} type="text" placeholder="Username" />
+            </div>
+
+            <div className={classes.user}>
+              <div className={classes.input_field}>
+                <input ref={firstNameDom} type="text" placeholder="First Name" />
+              </div>
+              <div className={classes.input_field}>
+                <input ref={lastNameDom} type="text" placeholder="Last Name" />
+              </div>
+            </div>
+
+            <div className={classes.input_field}>
+              <input ref={emailDom} type="email" placeholder="Email" />
+            </div>
+
+            <div className={classes.input_field}>
+              <input ref={passwordDom} type="password" placeholder="Password" />
+            </div>
+
+            <p className={classes.agree}>
+              I agree to <Link to={'/privacy'}>Privacy policy</Link> and <Link to={'/services'}>Terms of services</Link>
+            </p>
+
+            <div>
+              <button type='submit'>Agree and Join</button>
+            </div>
+
+            <p className={classes.login}>
+              <Link to={'/login'}>Already have an account?</Link>
+            </p>
+          </form>
+          </div>
+          <div className={classes.about_section}>
+          <About />
+          </div>
+        </div>
       </div>
-      <br/>
-      <div>
-        <span>First Name : ---</span>
-        <input ref={firstNameDom} type="text" placeholder="Enter First Name" />
-      </div>
-      <br />
-      <div>
-        <span>Last Name : ---</span>
-        <input ref={lastNameDom} type="text" placeholder="Enter Last Name" />
-      </div>
-      <br />
-      <div>
-        <span>Email : ---</span>
-        <input ref={emailDom} type="email" placeholder="Enter Email" />
-      </div>
-      <br />
-      <div>
-        <span>Password : ---</span>
-        <input ref={passwordDom} type="password" placeholder="Enter Password" />
-      </div>
-      <br />
-      <button type='submit'>Register</button>
-      </form>
-    </section>
-    
-  )
+      <Footer />
+    </div>
+  );
 }
 
-export default Register
+export default Register;

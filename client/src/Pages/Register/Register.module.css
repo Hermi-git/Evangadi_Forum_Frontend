@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full Page Wrapper */
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main Content Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 40px 20px;
+    background-color: #f9fafb;
+    margin-top: 64px;
+}
+
+/* Form & About Wrapper */
+.contentWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1000px;
+    justify-content: center;
+}
+.about_section{
+    margin-top: -240px;
+}
+
+/* Responsive layout for medium and large screens */
+@media (min-width: 768px) {
+    .contentWrapper {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+}
+
+/* Registration Form */
+.register_form {
+    width: 100%;
+    max-width: 450px;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 4px 4px 10px rgba(128, 128, 128, 0.5);
+    border-radius: 8px;
+    text-align: center;
+    min-height: 550px;
+}
+
+/* Title Section */
+.title h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.title p {
+    color: #4b5563;
+    font-size: 0.875rem;
+}
+
+.title a {
+    color: #ea580c;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Input Fields */
+.input_field {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.input_field input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.input_field input:focus {
+    border-color: #ea580c;
+    box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.2);
+}
+
+/* First Name and Last Name Fields */
+.user {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.user .input_field {
+    flex: 1;
+}
+
+/* Agreement Section */
+.agree {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-top: 1rem;
+}
+
+.agree a {
+    color: #ea580c;
+    text-decoration: underline;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #354ece;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1e3a8a;
+}
+
+/* Login Link */
+.login {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+.login a {
+    color: #ea580c;
+    text-decoration: none;
+}
