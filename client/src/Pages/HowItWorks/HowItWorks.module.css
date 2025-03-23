@@ -43,7 +43,7 @@ ul {
     margin-bottom: 20px;
 }
 
-li {
+.HowItWorks_wrapper li {
     font-size: 17px;
     list-style: none;
     background: #f4f4f4;
@@ -55,11 +55,11 @@ li {
     transition: background 0.3s ease-in-out;
 }
 
-li:hover {
+.HowItWorks_wrapper li:hover {
     background: #e8f0ff;
 }
 
-li::before {
+.HowItWorks_wrapper li::before {
     content: "✔";
     color: #3665f4;
     font-weight: bold;

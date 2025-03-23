@@ -11,6 +11,7 @@
     min-height: 100vh;
 }
 
+
 /* Main Content Container */
 .container {
     display: flex;
@@ -25,21 +26,18 @@
 /* Form & About Wrapper */
 .contentWrapper {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
     gap: 2rem;
     width: 100%;
     max-width: 1000px;
     justify-content: center;
 }
-.about_section{
-    margin-top: -240px;
-}
 
 /* Responsive layout for medium and large screens */
 @media (min-width: 768px) {
     .contentWrapper {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
+        grid-template-columns: 1fr 1fr; 
+        align-items: start;
     }
 }
 
@@ -52,7 +50,7 @@
     box-shadow: 4px 4px 10px rgba(128, 128, 128, 0.5);
     border-radius: 8px;
     text-align: center;
-    min-height: 550px;
+    min-height: 500px;
 }
 
 /* Title Section */
@@ -144,4 +142,22 @@ button:hover {
 .login a {
     color: #ea580c;
     text-decoration: none;
+}
+
+/* About Section */
+.about_section {
+    width: 100%;
+    max-width: 500px;
+    text-align: start;
+    padding: 1rem;
+}
+
+@media (max-width: 767px) {
+    .contentWrapper {
+        grid-template-columns: 1fr; 
+    }
+
+    .about_section {
+        margin-top: 1rem;
+    }
 }
