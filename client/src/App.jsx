@@ -7,6 +7,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import axiosBase from "./axiosConfig";
 import { createContext, useEffect, useState } from "react";
 import Ask from "./Pages/Ask/Ask";
+import Answer from "./Pages/Answer/Answer";
 
 export const AppState = createContext();
 
@@ -46,6 +47,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/howitworks" element={<HowItWorks />} />
           <Route path="/ask" element={<Ask/>}/>
+          <Route path ="/answers" element={<Answer/>}/>
         </Routes>
       </AppState.Provider>
     </div>

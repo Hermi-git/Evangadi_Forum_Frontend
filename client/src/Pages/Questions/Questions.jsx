@@ -49,7 +49,7 @@ function Questions() {
             onClick={() =>
               navigate("/answers", {
                 state: {
-                  questionId: question.id,
+                  questionId: question.questionid,
                   title: question.title,
                   description: question.description,
                 },
