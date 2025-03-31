@@ -1,53 +1,54 @@
-import React, { useState, useRef } from 'react';
-import axiosBase from '../../axiosConfig';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useRef, useContext } from "react";
+import axiosBase from "../../axiosConfig";
+import { useNavigate, Link } from "react-router-dom";
 import classes from "./Login.module.css";
-import About from '../../components/About/About';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
+import About from "../../components/About/About";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import { AppState } from "../../App";
 
 function Login() {
+  const { setUser } = useContext(AppState);
   const emailDom = useRef();
   const passwordDom = useRef();
   const navigate = useNavigate();
-  const [alert, setAlert] = useState({ message: '', type: '' });
+  const [alert, setAlert] = useState({ message: "", type: "" });
   const [errorFields, setErrorFields] = useState({ email: false, password: false });
 
   async function handleSubmit(e) {
     e.preventDefault();
     const emailValue = emailDom.current.value;
     const passwordValue = passwordDom.current.value;
-    
+
     setErrorFields({ email: false, password: false });
 
     if (!emailValue || !passwordValue) {
-        setAlert({ message: 'Please fill all the fields', type: 'error' });
-        setErrorFields({ email: !emailValue, password: !passwordValue });
-        return;
+      setAlert({ message: "Please fill all the fields", type: "error" });
+      setErrorFields({ email: !emailValue, password: !passwordValue });
+      return;
     }
 
     try {
-        const { data } = await axiosBase.post('users/login', {
-            email: emailValue,  
-            password: passwordValue
-        });
+      const { data } = await axiosBase.post("users/login", {
+        email: emailValue,
+        password: passwordValue,
+      });
 
-        setAlert({ message: 'User logged in successfully!', type: 'success' });
-        localStorage.setItem('token', data.token);
+      setAlert({ message: "User logged in successfully!", type: "success" });
+      localStorage.setItem("token", data.token);
+      setUser(data.user); 
 
-        setTimeout(() => {
-            navigate('/');
-        }, 1500);
-
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } catch (error) {
-        setAlert({ message: error?.response?.data?.msg || 'Something went wrong', type: 'error' });
+      setAlert({ message: error?.response?.data?.msg || "Something went wrong", type: "error" });
 
-        setTimeout(() => {
-            setAlert({ message: '', type: '' });
-        }, 3000);
+      setTimeout(() => {
+        setAlert({ message: "", type: "" });
+      }, 3000);
     }
-}
-
+  }
 
   return (
     <div className={classes.pageWrapper}>
@@ -62,22 +63,21 @@ function Login() {
               </p>
             </div>
 
-            {/* Alert Message */}
             {alert.message && (
-              <div className={`${classes.alert} ${alert.type === 'success' ? classes.success : classes.error}`}>
+              <div className={`${classes.alert} ${alert.type === "success" ? classes.success : classes.error}`}>
                 {alert.message}
               </div>
             )}
 
-            <div className={`${classes.input_field} ${errorFields.email ? classes.errorField : ''}`}>
+            <div className={`${classes.input_field} ${errorFields.email ? classes.errorField : ""}`}>
               <input ref={emailDom} type="email" placeholder="Email" />
             </div>
 
-            <div className={`${classes.input_field} ${errorFields.password ? classes.errorField : ''}`}>
+            <div className={`${classes.input_field} ${errorFields.password ? classes.errorField : ""}`}>
               <input ref={passwordDom} type="password" placeholder="Password" />
             </div>
 
-            <button type='submit'>Login</button>
+            <button type="submit">Login</button>
           </form>
 
           <div className={classes.about_section}>

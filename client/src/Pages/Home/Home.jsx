@@ -14,7 +14,7 @@ function Home() {
     <Header/>
     <div className={classes.question_header}>
       <button className={classes.ask_btn}> <Link className={classes.ask_question}to={"/ask"}>Ask Question</Link> </button>
-      <h2 className={classes.welcome_user}>welcome: {user?.username}</h2>
+      <h2 >welcome: <span className={classes.welcome_user}>{user?.username}</span></h2>
     </div>
     < Questions/>
     <Footer/>
